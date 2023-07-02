@@ -13,19 +13,19 @@ interface Props{
 const ENTRIES_INITIAL_STATE: EntriesState = {
     entries: [{
         _id: uuidv4(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas est quis ipsum luctus auctor.',
+        description: 'Pendiente: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas est quis ipsum luctus auctor.',
         status: 'pending',
         createdAt: Date.now() - 1000000,
     },
     {
         _id: uuidv4(),
-        description: 'Sed scelerisque arcu vitae risus aliquet, at convallis ex malesuada. Nullam aliquam elit sapien, vitae finibus nisi semper ut.',
+        description: 'En progreso: Sed scelerisque arcu vitae risus aliquet, at convallis ex malesuada. Nullam aliquam elit sapien, vitae finibus nisi semper ut.',
         status: 'in-progress',
         createdAt: Date.now(),
     },
     {
         _id: uuidv4(),
-        description: 'Phasellus a lobortis ligula, non scelerisque justo. Suspendisse ut risus nec dolor ultricies iaculis vitae et nisi. ',
+        description: 'Finalizada: Phasellus a lobortis ligula, non scelerisque justo. Suspendisse ut risus nec dolor ultricies iaculis vitae et nisi. ',
         status: 'finished',
         createdAt: Date.now() - 100000,
     },],
@@ -33,12 +33,23 @@ const ENTRIES_INITIAL_STATE: EntriesState = {
 
 export const EntriesProvider: FC<Props> = ({ children }) => {
     
-  const [state, dispatch] = useReducer(entriesReducer, ENTRIES_INITIAL_STATE);
-
+    const [state, dispatch] = useReducer(entriesReducer, ENTRIES_INITIAL_STATE);
+    
+    const addNewEntry = (description: string) => {
+        const newEntry: Entry = {
+            _id: uuidv4(),
+            description,
+            createdAt: Date.now(),
+            status: "pending"
+        }
+        dispatch({type: '[Entry] Add-Entry', payload: newEntry})
+    }
 
   return (
       <EntriesContext.Provider value={{
-      ...state,
+          ...state,
+          //Methods
+          addNewEntry,
       }}>
           {children}
     </EntriesContext.Provider>
