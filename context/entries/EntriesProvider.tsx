@@ -11,24 +11,7 @@ interface Props{
 }
 
 const ENTRIES_INITIAL_STATE: EntriesState = {
-    entries: [{
-        _id: uuidv4(),
-        description: 'Pendiente: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas est quis ipsum luctus auctor.',
-        status: 'pending',
-        createdAt: Date.now() - 1000000,
-    },
-    {
-        _id: uuidv4(),
-        description: 'En progreso: Sed scelerisque arcu vitae risus aliquet, at convallis ex malesuada. Nullam aliquam elit sapien, vitae finibus nisi semper ut.',
-        status: 'in-progress',
-        createdAt: Date.now(),
-    },
-    {
-        _id: uuidv4(),
-        description: 'Finalizada: Phasellus a lobortis ligula, non scelerisque justo. Suspendisse ut risus nec dolor ultricies iaculis vitae et nisi. ',
-        status: 'finished',
-        createdAt: Date.now() - 100000,
-    },],
+    entries: [],
 }
 
 export const EntriesProvider: FC<Props> = ({ children }) => {
