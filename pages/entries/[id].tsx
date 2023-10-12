@@ -7,6 +7,7 @@ import { ChangeEvent, FC, useContext, useMemo, useState } from 'react';
 import { GetServerSideProps } from 'next'
 import { dbEntries } from '@/database';
 import { EntriesContext } from '@/context/entries';
+import { dateFunctions } from '@/utils';
 
 const validStatus: EntryStatus[] = ['pending', 'in-progress', 'finished'];
 
@@ -52,7 +53,7 @@ export const EntryPage: FC<Props> = ({entry}) => {
                     <Card>
                         <CardHeader
                             title={`Entrada:`}
-                            subheader={`Creada hace: ${entry.createdAt} minutos`}
+                            subheader={`Creada ${dateFunctions.getFormatDistanceToNow(entry.createdAt) }`}
                         />
                         <CardContent>
                             <TextField
